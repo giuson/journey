@@ -10,6 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -29,6 +30,7 @@
 						<ul>
 							<li><a href="#intro" class="active">About</a></li>
 							<li><a href="#first">Project 1: HTML5 Portfolio</a></li>
+							<li><a href="#footer">Contact</a></li>
 							<!--<li><a href="#second">Project 2</a></li>
 							<li><a href="#cta">Get Started</a></li>-->
 						</ul>
@@ -42,7 +44,7 @@
 								<div class="spotlight">
 									<div class="content">
 										<header class="major">
-											<h2>About</h2>
+											<h2>{{ title }}</h2>
 										</header>
 										<p>hello! my name is gianna and i am a recent <a href="http://brown.edu">brown university</a> graduate. </br> 
 											this summer, i am interning at the state department while working on projects with <a href="http://wearejourney.io">journey</a> as a beta tester 
@@ -58,7 +60,7 @@
 						<!-- First Section -->
 							<section id="first" class="main special">
 								<header class="major">
-									<h2>Project 1: HTML 5 Portfolio</h2>
+									<h2>{{ title }}</h2>
 								</header>
 
 								<p><i>This project is still in progress</i></br></br>
@@ -150,9 +152,13 @@
 
 				<!-- Footer -->
 					<footer id="footer">
-						<section>
-							<h2>Thank you!</h2>
-							<p>Thanks for checking out my website--I hope you enjoy it :)</p>
+						<section id="thanks">
+							<h2>{{ title }}</h2>
+							<p>{{ thanks }}</p>
+							<center>{{ counter }}<br>
+							<img src="images/clap.png" @click="increment" width="50px">
+						</center>
+
 							<!--
 							<ul class="actions">
 								<li><a href="generic.html" class="button">Learn More</a></li>
@@ -160,15 +166,31 @@
 						-->
 						</section>
 						<section>
-							<h2>Contact</h2>
+							<div id="me">
+							<h2>{{ title }}</h2>
 							<dl class="alt">
 							<!--	<dt>Address</dt>
 								<dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
 								<dt>Phone</dt>
 								<dd>(000) 000-0000 x 0000</dd> -->
 								<dt>Email</dt>
-								<dd><a href="#">giannauson@gmail.com</a></dd>
-							</dl>
+								<dd><a href="#">{{ myemail }}</a></dd>
+							</dl></div>
+								<form id="contactme" action="" method="post" @submit.prevent="processForm">
+								  <fieldset>
+									<input type="text" v-model="name" placeholder="Your name" tabindex="1" required autofocus>
+								  </fieldset>
+								  <fieldset>
+									<input placeholder="Your Email Address" type="email" v-model="email" tabindex="2" required>
+								  </fieldset>
+								  <fieldset>
+									<textarea placeholder="Type your Message Here...." v-model="message" tabindex="5" required></textarea>
+								  </fieldset>
+								  <center><fieldset>
+									<button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+								  </fieldset></center>
+								</form>
+							   
 						<!--	<ul class="icons">
 								<li><a href="#" class="icon fa-twitter alt"><span class="label">Twitter</span></a></li>
 								<li><a href="#" class="icon fa-facebook alt"><span class="label">Facebook</span></a></li>
@@ -191,5 +213,10 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+			<!-- My scripts -->
+			<script type="text/javascript" src="index.js"></script>
+			<script type="text/javascript" src="vue.js"></script>
+
 	</body>
+	
 </html>
